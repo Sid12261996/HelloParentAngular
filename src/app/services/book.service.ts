@@ -20,6 +20,9 @@ export class BookService {
     const currentUrl = `${this.url + this.endpoint}/${schoolId}`;
     return this.http.get<Book[]>(currentUrl);
   }
-
+  addBook(books: Book, quantity:number): Observable<any> {
+    const currentUrl = `${this.url + this.endpoint}/${quantity}`;
+    return this.http.post(currentUrl, books);
+  }
 
 }

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { BookService } from 'src/app/services/book.service';
 
 @Component({
   selector: 'app-book',
@@ -7,8 +8,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
-
-  constructor(private  fB: FormBuilder) {
+  
+  constructor(private  fB: FormBuilder,public _bookService:BookService) {
   }
 
   BookForm: FormGroup;
@@ -35,12 +36,14 @@ export class BookComponent implements OnInit {
       DDC: ['', Validators.required],
       keywords: ['', Validators.required],
       accessionNo: ['', Validators.required],
-      quantity: ['', Validators.required]
+      quantity: [1, Validators.required]
     });
   }
 
   Save() {
-    console.log(this.BookForm.value);
+    this._bookService.addBook(this.BookForm.value, this.BookForm.value.quantity).subscribe(data => {
+      console.log(data);
+    });
   }
 
   GenerateUniqueCode() {
@@ -79,7 +82,8 @@ export class BookComponent implements OnInit {
       ISBNNo: '',
       DDC: '',
       keywords: '',
-      accessionNo: ''
+      accessionNo: '',
+      quantity:1,
     });
   }
 }
