@@ -21,5 +21,9 @@ export class BookService {
     return this.http.get<Book[]>(currentUrl);
   }
 
+  addBook(books: Book, quantity): Observable<any> {
+    const currentUrl = `${this.url + this.endpoint}/${quantity}`;
+    return this.http.post(currentUrl, books);
+  }
 
 }

@@ -29,19 +29,12 @@
 
     </select>
   </mat-form-field>
-  <!-- <mat-form-field class="col-md-2" [floatLabel]="'never'">
+  <mat-form-field class="col-md-2" [floatLabel]="'never'">
     <mat-label>Items</mat-label>
     <select matNativeControl  formControlName="Item" required>
       <option *ngFor="let book of bookView" value={{book.id}}>{{book.bookName}}</option>
     </select>
-  </mat-form-field> -->
-  <mat-form-field class="col-md-2">
-    <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="Item" [matAutocomplete]="auto" required>
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.id">
-        {{option.bookName}}
-      </mat-option>
-    </mat-autocomplete>
+
   </mat-form-field>
   <div class="col-md-2 d-inline">
   <button mat-raised-button  (click)="onAddToContainer()" [disabled]="containerView.length== BOOK_ISSUE_LIMIT||formControl.invalid " class="bdr0 mr-2 btn bg-orange text-white"> Add in List</button>

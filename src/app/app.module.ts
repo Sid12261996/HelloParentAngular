@@ -20,8 +20,7 @@ import {
   MatSnackBarModule,
   MatIconModule,
   MatMenuModule,
-  MatDividerModule,MatBadgeModule,
-  MatListModule,MatSortModule,MatAutocompleteModule
+  MatDividerModule, MatBadgeModule, MatListModule, MatSortModule
 
 } from '@angular/material';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -32,9 +31,10 @@ import {BookissueComponent} from './bookissue/bookissue.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HeaderComponent} from './_shared/header/header.component';
 import {RouterModule, Routes} from '@angular/router';
-import { BookreturnComponent } from './bookreturn/bookreturn.component';
-import { HttpClientModule } from '@angular/common/http';
-import { TableComponent } from './table/table.component';
+import {BookreturnComponent} from './bookreturn/bookreturn.component';
+import {HttpClientModule} from '@angular/common/http';
+import {TableComponent} from './table/table.component';
+import {BookUploadComponent} from './uploads/book/bookupload.component';
 
 //import { BookIssuedComponent } from './showIssuedBook/book-issued.component';
 
@@ -43,7 +43,8 @@ const routes: Routes = [
   {path: 'book', component: BookComponent},
   {path: 'issue', component: BookissueComponent},
   {path: 'return', component: BookreturnComponent},
-  {path: 'table', component:TableComponent}
+  {path: 'table', component: TableComponent},
+  {path: 'bulkupload', component: BookUploadComponent}
 ];
 
 @NgModule({
@@ -55,6 +56,7 @@ const routes: Routes = [
     BookreturnComponent,
     HeaderComponent,
     TableComponent,
+    BookUploadComponent
     //BookIssuedComponent
   ],
   imports: [
@@ -65,9 +67,9 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatCheckboxModule, MatCardModule, MatFormFieldModule, MatInputModule,MatIconModule,MatMenuModule,MatDividerModule,
-    MatSelectModule, MatTableModule, MatChipsModule, MatPaginatorModule, MatSidenavModule, MatNativeDateModule,MatBadgeModule,
-    MatDatepickerModule, MatSnackBarModule,HttpClientModule,MatListModule,MatSortModule,MatAutocompleteModule
+    MatCheckboxModule, MatCardModule, MatFormFieldModule, MatInputModule, MatIconModule, MatMenuModule, MatDividerModule,
+    MatSelectModule, MatTableModule, MatChipsModule, MatPaginatorModule, MatSidenavModule, MatNativeDateModule, MatBadgeModule,
+    MatDatepickerModule, MatSnackBarModule, HttpClientModule, MatListModule, MatSortModule
   ],
   providers: [MatNativeDateModule, MatSnackBar],
   bootstrap: [AppComponent]

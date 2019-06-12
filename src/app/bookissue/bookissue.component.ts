@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StudentView} from '../views/studentview';
-import {FormBuilder, FormGroup, Validators,FormControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Category, Status} from '../enum/enum';
 import {MatTableDataSource} from '@angular/material';
 import {BookViews} from '../views/bookViews';
@@ -8,8 +8,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { StudentService } from '../services/student.service';
 import { MapperService } from '../mapper/mapper.service';
 import { BookService } from '../services/book.service';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-bookissue',
@@ -22,9 +20,8 @@ export class BookissueComponent implements OnInit {
   bookView: BookViews[] = [];
   studentView: StudentView[];
   books: BookViews[];
-  //filteredOptions: Observable<BookViews[]>;
+
     
-  filteredOptions: Observable<BookViews[]>;
   constructor(private  fB: FormBuilder, private  snackBar: MatSnackBar,private studentService: StudentService,private mapperService:MapperService,private booksService:BookService) {
   }
 
@@ -49,11 +46,7 @@ export class BookissueComponent implements OnInit {
       Category: null,
       Item: null
     });
-    this.filteredOptions = this.formControl.get("Item").valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+
 
     this.studentService.getStudentsBy('56e45c3af289df1048faced3').subscribe(students => {
       this.studentView = this.mapperService.mapStudentToStudentView(students);       
@@ -66,21 +59,12 @@ export class BookissueComponent implements OnInit {
 
     
   }
-  displayFn(book?: BookViews): string | undefined {
-    return book ? book.bookName : undefined;
-  }
 
-  private _filter(value: string): BookViews[] {
-    if(value==null) return [];
-    const filterValue = value.toLowerCase();
-
-    return this.bookView.filter(option => option.bookName.toLowerCase().includes(filterValue));
-  }
   public onCategoryChange(): void {
     
-    let cat =Object.getOwnPropertyNames(Category) ;
+let cat =Object.getOwnPropertyNames(Category) ;
     this.bookView = this.books.filter(x => cat[x.category] == this.formControl.value.Category);
-    
+  
   }
 
   public onAddToContainer(): void {
@@ -117,12 +101,8 @@ export class BookissueComponent implements OnInit {
     }
   }
 
-  public getCategoryEnumText(cat: number): string {
- 
-    if(cat==0) return "Book";
-    if(cat==1) return "Journals";
-    if(cat==2) return "Newspapper";
-    if(cat==3) return "Novels";
+  public getCategoryEnumText(cat: Category): string {
+    return Category[cat];
   }
 
   public onRemoveFromContainer(elem: BookViews): void {
