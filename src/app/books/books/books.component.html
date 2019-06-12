@@ -1,0 +1,110 @@
+<div class="container-fluid">
+  <h1 class="h1 p-t10 d-inline-block">Books</h1>
+
+  <nav aria-label="breadcrumb" class="d-inline-block float-right">
+
+    <ol class="breadcrumb bg-none p-r0">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Books</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container-fluid">
+  <mat-card class="bdr0 t-bdr p-0 m-b15">
+    <div class="container-fluid p-t15 p-b20">
+      <mat-form-field class="col-md-2">
+        <mat-label>Status</mat-label>
+        <select matNativeControl [(ngModel)]="filter.status" (change)="onSearchBooks()">
+          <option value="0">Available</option>
+          <option value="1">Dead</option>
+          <option value="2">Lost</option>
+          <option value="3">Issued</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field class="col-md-2">
+        <mat-label>Category</mat-label>
+        <select matNativeControl [(ngModel)]="filter.category" (change)="onSearchBooks()">
+          <option value="0">Book</option>
+          <option value="1">Novels</option>
+          <option value="2">Journals</option>
+          <option value="3">Newspapper</option>
+        </select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width col-md-2">
+        <input matInput placeholder="Name" [(ngModel)]="filter.bookName" (keyup)="onSearchBooks()">
+      </mat-form-field>
+      <!-- <mat-form-field class="example-full-width col-md-2">
+        <input matInput placeholder="Author name" [(ngModel)]="filter.authorName">
+      </mat-form-field> -->
+
+      <div class="col-md-2 d-inline">
+        <!-- <button mat-raised-button (click)="onSearchBooks()" color="accent" class="bdr0 mr-2 btn">Search</button> -->
+        <button mat-raised-button (click)="onClear()"  class="bdr0 mr-2 btn bg-orange  text-white">Clear</button>
+        <button mat-raised-button class="bdr0 btn bg-blue text-white"> Export</button>
+      </div>
+
+    </div>
+
+    
+    
+  </mat-card>
+
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 t-bdr ftable" matSort matSortActive="category" matSortDisableClear matSortDirection="desc">
+
+    <ng-container matColumnDef="category" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Category.</th>
+      <td mat-cell *matCellDef="let element"> {{getCategoryEnumText(element.category)}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bookName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Name.</th>
+      <td mat-cell *matCellDef="let element"> {{element.bookName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="authorName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Author name.</th>
+      <td mat-cell *matCellDef="let element"> {{element.authorName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="publisherName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Publisher name.</th>
+      <td mat-cell *matCellDef="let element"> {{element.publisherName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="shelfRackPostion">
+
+      <th mat-header-cell *matHeaderCellDef>Shelf Rack Position. </th>
+      <td mat-cell *matCellDef="let element"> {{element.selfRackPosition}} </td>
+
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status.</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip-list aria-label="Fish selection">
+          <mat-chip [matMenuTriggerFor]="appMenu"  (click)="openMenu(element)" *ngIf="element.status==3">{{getStatusEnumText(element.status)}}</mat-chip>
+          <mat-chip *ngIf="element.status!=3">{{getStatusEnumText(element.status)}}</mat-chip>
+          <!-- <mat-chip>Two fish</mat-chip>
+              <mat-chip color="primary" selected>Primary fish</mat-chip>
+              <mat-chip color="accent" selected>Accent fish</mat-chip> -->
+        </mat-chip-list>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+
+</div>
+
+<mat-menu #appMenu="matMenu">
+  <mat-list role="list">
+    <mat-list-item role="listitem">Issued To   :Raj</mat-list-item>
+    <mat-list-item role="listitem">Issued Date : 2/3/2019</mat-list-item>
+    
+  </mat-list>
+</mat-menu>

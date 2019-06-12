@@ -1,0 +1,16 @@
+.header{background: #f2ab2f; display: flex; justify-content: space-between;padding:0}
+.header > .adminlogo{flex: 1; color: #fff; font-size: 25px;font-weight: 400;}
+.header > .adminlogo > span{font-size: 13px; font-weight: 300; display: block;}
+.header > .adminname{flex: 1}
+
+.username{background: #F8602F;cursor: pointer; color: #fff;border-radius: 50%; float: left; margin:5px 0 5px 20px ; width: 50px;height: 50px;display: flex;justify-content: center; align-items: center; }
+.logout_box{width: 245px;padding: 0;position: absolute;right: 24px;top: 17px; z-index: 9;}
+.user_name{float: left; color: #fff; background: #ff5823; font-weight: bold;border-radius: 50px;width: 40px; height: 40px; margin: 0 15px;display: flex;justify-content: center;align-items: center;}
+.user_details{float: right;color: #787878; text-align: right;margin-right: 15px;}
+.user_details a{color: #787878; text-decoration: none;}
+.user_details a:hover{color: #ff5823}
+.adminname .logout_warn{background: #ff5823; border-radius: 0!important; margin: 20px 15px 15px 15px !important; float: right;line-height: 30px;min-width: 90px;}
+.help, .setting { float: left; margin: 19px 20px 0 20px; color: #ffffff;cursor: pointer;}
+
+
+

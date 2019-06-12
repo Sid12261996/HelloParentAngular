@@ -1,0 +1,162 @@
+<div class="container-fluid">
+  <h1 class="h1 p-t10 d-inline-block">Book Of Entry</h1>
+
+  <nav aria-label="breadcrumb" class="d-inline-block float-right">
+      
+      <ol class="breadcrumb bg-none p-r0">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Book of entry</li>
+      </ol>
+    </nav>
+</div>
+
+<div class="container-fluid">
+<mat-card class="bdr0 t-bdr p-0 m-b15">
+    <div class="container-fluid card-hearding">
+        <h2 class="h2">Book details <span> Fill the all information</span> </h2>
+        
+    </div>
+
+    <form [formGroup]="BookForm" >
+
+      <div class="col-md-3 float-left">
+        <mat-form-field class="col-md-8 p-0">
+            <input matInput placeholder="Accession No" formControlName="accessionNo" required>
+
+          </mat-form-field>
+        <button mat-raised-button lass="bdr0 btn bg-orange text-white" (click)="GenerateUniqueCode()" >Generate Code</button>
+      </div>
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="Quantity" required formControlName="quantity" type="number">
+      </mat-form-field>
+          <mat-form-field class="col-md-3">
+              <input matInput placeholder="Book name" required formControlName="BookName">
+            </mat-form-field>   
+
+      
+
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="Author name" required formControlName="AuthorName">
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="Publisher name" required formControlName="PublisherName">
+      </mat-form-field>
+      <!-- <mat-form-field class="col-md-6">
+        <input matInput placeholder="Status" required formControlName="status">
+      </mat-form-field> -->
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="Quantity" required formControlName="quantity" type="number">
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3">
+        <input matInput [matDatepicker]="picker1" placeholder="Created Date" formControlName="createdDate">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3">
+        <input matInput [matDatepicker]="picker2" placeholder="Ordered Date" formControlName="orderedDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <textarea matInput placeholder="Remarks" rows="10" required formControlName="remarks"></textarea>
+      </mat-form-field>
+
+
+    </form>
+
+
+</mat-card>
+
+
+
+<mat-card class="bdr0 t-bdr p-0 m-b15">
+    <div class="container-fluid card-hearding">
+        <h2 class="h2">Additional Information <span> Fill the all information</span> </h2>
+
+    </div>
+
+    <form [formGroup]="BookForm" (ngSubmit)="Save()">
+
+
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="Cost" required formControlName="cost" type="number">
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3">
+        <mat-label>Self Rack Position</mat-label>
+        <select matNativeControl required formControlName="selfRackPosition">
+          <option value="Upper 1">Upper 1</option>
+          <option value="Upper 2">Upper 2</option>
+          <option value="Middle 1">Middle 1</option>
+          <option value="Middle 2">Middle 2</option>
+          <option value="Lower 1">Lower 1</option>
+          <option value="Lower 2">Lower 2</option>
+        </select>
+      </mat-form-field>
+
+
+
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="Vendor" required formControlName="vendorName">
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="Year Of Publication" formControlName="yearOfPublication">
+
+
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="Subject" required formControlName="subject">
+      </mat-form-field>
+
+      <mat-form-field class="col-md-3">
+          <mat-label>Category</mat-label>
+          <select matNativeControl required formControlName="category">
+            <option value="0">Books</option>
+            <option value="1">Novels</option>
+            <option value="2">Journals</option>
+            <option value="3">Newspapper</option>
+          </select>
+        </mat-form-field>
+
+      <mat-form-field class="col-md-3">
+        <input matInput [matDatepicker]="picker4" placeholder="Purchasing Date" formControlName="purchaseDate">
+        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+        <mat-datepicker #picker4></mat-datepicker>
+      </mat-form-field>
+
+
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="ISBN No" required formControlName="ISBNNo">
+      </mat-form-field>
+
+
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="DDC" required formControlName="DDC">
+      </mat-form-field>
+
+
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="Keywords" required formControlName="keywords">
+      </mat-form-field>
+
+
+      <mat-form-field class="col-md-3">
+        <input matInput placeholder="Number of Pages" required formControlName="pages">
+      </mat-form-field>
+
+    </form>
+
+</mat-card>
+
+
+  <div class="example-button-row m-b15">
+      <button [disabled]="BookForm.invalid" mat-raised-button (click)="Save()" class="bdr0 btn bg-blue text-white">Save</button>
+      <button mat-raised-button (click)="Reset()" class="bdr0 btn bg-orange text-white">Reset</button>
+    </div>
+</div>

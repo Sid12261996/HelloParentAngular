@@ -1,0 +1,186 @@
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <img src="../assets/images/logo-150x50-small.png">
+        </div>
+
+        <ul class="list-unstyled components">
+
+            <li class="active"> <a href="#"> <i class="fas fa-home"></i> Home</a> </li>
+            <li>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i
+                        class="fas fa-book-open"></i> LMS</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li> <a routerLink="">Books</a></li>
+                    <li> <a routerLink="/book">Book</a></li>
+                    <li> <a routerLink="/issue">Book Issue</a></li>
+                    <li> <a routerLink="/return">Book Return</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#schoolinfo" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i
+                        class="fas fa-school"></i> School Info</a>
+                <ul class="collapse list-unstyled" id="schoolinfo">
+                    <li> <a routerLink="">Classes</a></li>
+                    <li> <a routerLink="">Academic Session Details</a></li>
+                    <li> <a routerLink="">School Staff Details</a></li>
+                    <li> <a routerLink="">Class Transfer</a></li>
+                    <li> <a routerLink="">Consent/Invitation Form</a></li>
+                    <li>
+                        <a href="#subjects" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">Subjects</a>
+                        <ul class="collapse list-unstyled" id="subjects">
+                            <li> <a routerLink="">Create Master Subject</a></li>
+                            <li> <a routerLink="">Class Subjects</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#gradeddisciplines" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">Graded Disciplines</a>
+                        <ul class="collapse list-unstyled" id="gradeddisciplines">
+                            <li> <a routerLink="">Create Master Graded Disciplines</a></li>
+                            <li> <a routerLink="">Class Graded Disciplines</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#students" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-user-graduate"></i> Students</a>
+                    <ul class="collapse list-unstyled" id="students">
+                        <li> <a routerLink="">Student Details</a></li>
+                        <li> <a routerLink="">Pending Image Requests</a></li>                       
+                    </ul>
+            </li>
+
+            <li>
+                    <a href="#fees" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-rupee-sign"></i> Fees</a>
+                        <ul class="collapse list-unstyled" id="fees">
+                            <li> 
+                                <a href="#feessetup" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Fees Setup</a>
+                                <ul class="collapse list-unstyled" id="feessetup">
+                                        <li> <a routerLink="">Create Master Components</a></li>
+                                        <li> <a routerLink="">Add Class Fee Structure</a></li>
+                                        <li> <a routerLink="">Edit Student Fee Structure</a></li>
+                                        <li> <a routerLink="">Set Late Fee</a></li>                       
+                                    </ul>
+                            </li>
+
+                            <li> <a routerLink="">Collect Fees</a></li> 
+                            <li> <a routerLink="">Pending Fee Details</a></li> 
+                            <li> 
+                                <a href="#generatefees" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Generate Fees</a>
+                                <ul class="collapse list-unstyled" id="generatefees">
+                                        <li> <a routerLink="">Calculate Fees</a></li>
+                                        <li> <a routerLink="">Approve Fees</a></li>                                                               
+                                    </ul>
+                            </li> 
+
+                            <li> <a routerLink="">Fees Transaction</a></li> 
+                            <li> <a routerLink="">Student Ledger</a></li>
+                            <li> <a routerLink="">Payment Requests</a></li>                      
+                        </ul>
+                </li>
+
+                <li> <a routerLink=''><i class="fas fa-book"></i> Messages</a></li>
+                <li>
+                        <a href="#calendar" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-calendar-alt"></i> Calendar</a>
+                        <ul class="collapse list-unstyled" id="calendar">
+                            <li> <a routerLink="">Event Details</a></li>
+                            <li> <a routerLink="">Student Birthdays</a></li>
+                            <li> <a routerLink="">Meal Planner</a></li>                            
+                        </ul>
+                </li>
+                
+                <li>
+                        <a href="#attendance" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-clipboard"></i> Attendance</a>
+                        <ul class="collapse list-unstyled" id="attendance">
+                            <li> <a routerLink="">Student Attendance</a></li>
+                            <li> <a routerLink="">Teacher Attendance</a></li>                                                        
+                        </ul>
+                </li>
+            <li> <a routerLink=''><i class="fas fa-images"></i> Albums</a></li>
+            <li> 
+                <a href="#more" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i class="fas fa-ellipsis-h"></i> More</a>
+                <ul class="collapse list-unstyled" id="more">
+                        <li> <a routerLink="">more</a></li>
+                        <li> <a routerLink="">Groups</a></li>                                                        
+                    </ul>
+            </li>
+
+
+
+
+            <li> <a routerLink='/bookIssued'><i class="fas fa-book"></i> Show Issued Books</a></li>
+            <li> <a href=""><i class="fas fa-envelope"></i> Messages </a></li>
+        </ul>
+
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="z-index: 99">
+            <div class="container-fluid p-0">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"><i class="fas fa-pencil-alt"></i> Rian senior Secondary
+                                School</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <mat-icon matBadge="15" matBadgeColor="warn" class="m-r15">email</mat-icon>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <mat-icon matBadge="10" matBadgeColor="warn">notifications</mat-icon>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link p-0" href="#"> <button mat-button [matMenuTriggerFor]="menu">
+                                    <i class="fas fa-user-circle fa-2x usericoncolor"></i>
+                                    Student Name
+                                    <i class="fas fa-angle-down"></i>
+                                </button>
+                                <mat-menu #menu="matMenu">
+                                    <span class="ml-3 text-primary"> welcome ! </span>
+                                    <button mat-menu-item><i class="fas fa-user-tie"></i> My Account</button>
+                                    <mat-divider></mat-divider>
+                                    <button mat-menu-item><i class="fas fa-cog"></i> Setting</button>
+                                    <mat-divider></mat-divider>
+                                    <button mat-menu-item><i class="fas fa-life-ring"></i> Support</button>
+                                    <mat-divider></mat-divider>
+                                    <button mat-menu-item><i class="fas fa-lock"></i> Lock Screen</button>
+                                    <mat-divider></mat-divider>
+                                    <button mat-menu-item><i class="fas fa-power-off"></i> Logout</button>
+
+                                </mat-menu>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

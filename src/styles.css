@@ -1,0 +1,287 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap');
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    background: #f4f5f9;
+    font-size: 13px;
+    color: #444444;
+    font-family: 'Poppins', sans-serif !important;
+ }
+
+ .mat-button, .mat-fab, .mat-flat-button, .mat-icon-button, .mat-mini-fab, .mat-raised-button, .mat-stroked-button{font-family: 'Poppins', sans-serif !important;}
+
+.h1{font-size: 20px; font-weight: 600;font-family: 'Poppins', sans-serif !important;}
+.h2{font-size: 13px; font-weight: 600; text-transform: uppercase; font-family: 'Poppins', sans-serif !important;}
+.h2 span{font-size: 12px; font-weight: 300; color: #9a9a9a; text-transform: capitalize; padding-left: 10px;}
+
+/*----------padding-------------*/
+.p-0{padding: 0}
+.p-r0{padding-right: 0}
+.p-t10{padding-top: 10px}
+.p-b10{padding-bottom: 10px;}
+.p-t15{padding-top: 15px}
+.p-b15{padding-bottom: 15px;}
+.p-t20{padding-top: 20px}
+.p-b20{padding-bottom: 20px;}
+
+
+/*----------Margin-------------*/
+.m-t10{margin-top: 10px;}
+.m-b10{margin-bottom: 10px;}
+.m-b15{margin-bottom: 15px;}
+
+
+
+/*----------------font size---------------*/
+.font-12{font-size: 80%}
+
+/*----------button row-------------*/
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+
+/*-----------Background color-----------*/
+.bg-blue{background: #2894DA}
+.bg-orange{background: #EF7625}
+.bg-green{background: #92C745}
+
+/*-----------text color-----------*/
+
+
+
+
+/*----------Left Menu-------------*/
+ul.left-menu{ margin: 0;padding: 0}
+ul.left-menu li{ margin: 0;padding: 0 10px; list-style: none; border-bottom: 1px dashed #d4d4d4; display: flex; align-items: center;}
+ul.left-menu li:hover{background: #f4f5f9;}
+ul.left-menu li a{ margin: 0;padding: 0; font-size: 13px; color: #777777; line-height: 50px;}
+ul.left-menu li a:hover{color: #ef7625;text-decoration: none}
+ul.left-menu li i{color: #ef7625;font-size: 12px;margin-right: 10px; min-width: 18px; text-align: center}
+
+.bg-none{background: none !important}
+.displayinherit{display: inherit !important}
+.bdr0{border-radius: 0 !important}
+.t-bdr{border-top: 1px solid #2894da}
+.card-hearding{ padding-top: 20px;padding-bottom: 10px; margin-bottom: 15px; border-bottom: 1px solid #e8eaee}
+
+.ftable thead .mat-header-cell {font-family: 'Poppins', sans-serif;font-size: 12px; font-weight: 500; color: rgba(68, 68, 68, 10)}
+.ftable tbody tr td:first-child:nth-child(even){background: #fafafa}
+
+.ftable tbody tr:nth-child(odd){background: #f9f9f9}
+.ftable tbody tr:nth-child(even){background: #ffffff}
+.btn-sidebar{background: none; color: #EB781F}
+
+
+
+
+.CP
+{
+  cursor: pointer
+}
+.mat-raised-button.btn{padding: 0 8px; line-height: 30px;font-family: 'Poppins', sans-serif !important;}
+
+
+
+
+
+
+/*
+    DEMO STYLE side bar
+*/
+
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 11px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #ffffff;
+    color: #444444;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 5px 10px;
+    background: #F5F6FA;
+}
+
+#sidebar ul.components {
+    padding: 0;
+    border-bottom: 1px solid #cccccc;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    border-bottom: 1px solid #f7f7f7;
+}
+#sidebar ul li a svg {
+    min-width: 25px;
+}
+#sidebar ul li a i{color: #EB781F}
+#sidebar ul li a:hover {
+    color: #444444;
+    background: #f9f9f9;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #2894DA;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+#sidebar ul ul.list-unstyled li a{
+    color: #fafafa;
+    border-bottom: 1px solid #2890DA;
+    }
+#sidebar ul ul.list-unstyled li a:hover{
+        color: #222222;
+        }
+        #sidebar ul ul ul.list-unstyled li a {
+            color: #eae5e5;
+            font-size: 0.9em !important;
+         
+         }
+ul ul a {
+    font-size: 1em !important;
+    padding-left: 30px !important;
+    background: #2882DA;    
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: calc(100% - 250px);
+    padding: 0;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}

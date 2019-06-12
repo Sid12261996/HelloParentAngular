@@ -1,0 +1,45 @@
+.example-container {
+  width: 100%;
+
+  /* border: 1px solid rgba(0, 0, 0, 0.5); */
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+.header{ display: flex; justify-content: space-between;padding: 0; box-shadow: 0 2px 4px #ccc; z-index: 5;}
+.header > .adminlogo{flex: 1; }
+.header > .adminlogo i{cursor: pointer; color: #ef7625;margin-top: 20px;}
+.header > .adminlogo > span{font-size: 13px; font-weight: 300; display: block;}
+.header > .adminname{flex: 1}
+.hp-logo{background: #f5f6fa; float: left;padding:5px 15px;border-right: 1px solid #d7d7d7; margin-right: 10px;min-width: 250px; text-align: center;}
+
+/* .username{background: #F8602F;cursor: pointer; color: #fff;border-radius: 50%; float: left; margin:5px 0 5px 20px ; width: 50px;height: 50px;display: flex;justify-content: center; align-items: center; }
+.logout_box{width: 245px;padding: 0;position: absolute;right: 24px;top: 17px; z-index: 9;}
+.user_name{float: left; color: #fff; background: #ff5823; font-weight: bold;border-radius: 50px;width: 40px; height: 40px; margin: 0 15px;display: flex;justify-content: center;align-items: center;}
+.user_details{float: right;color: #787878; text-align: right;margin-right: 15px;}
+.user_details a{color: #787878; text-decoration: none;}
+.user_details a:hover{color: #ff5823}
+.adminname .logout_warn{background: #ff5823; border-radius: 0!important; margin: 20px 15px 15px 15px !important; float: right;line-height: 30px;min-width: 90px;}
+.help, .setting { float: left; margin: 19px 20px 0 20px; color: #ffffff;cursor: pointer;} */
+
+
+
+.searchbar{background: #FCFCFC; border: 1px solid #ccc;border-radius: 30px;  margin: 0 0 0 10px;  padding: 0 0 0 10px;  position: absolute;  top: 10px;  height: 40px;  width: 300px; }
+
+.p-relative{position: relative;top: 7px}
+
+.m-icon{ position: relative; top: 13px;}
+.nav-item .material-icons{ font-size: 17px}
+.nav-item .mat-badge-content{font-size: 10px;font-weight: 600}
+.nav-item .mat-badge-medium .mat-badge-content{ width: 18px; height: 18px;line-height: 18px;}
+.nav-item .mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content{right: 0;}
+
+.usericoncolor{color: #518EDE}
