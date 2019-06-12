@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { BookService } from 'src/app/services/book.service';
+
+import {Book} from '../../model/book';
+import {MapperService} from '../../mapper/mapper.service';
+import {BookService} from '../../services/book.service';
+
 
 @Component({
   selector: 'app-book',
@@ -8,42 +12,48 @@ import { BookService } from 'src/app/services/book.service';
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
+
   
   constructor(private  fB: FormBuilder,public _bookService:BookService) {
+
   }
 
   BookForm: FormGroup;
   buttondisabled = true;
+  booksToPost: Book[];
 
   ngOnInit() {
     this.BookForm = this.fB.group({
       category: [''],
-      BookName: [''],
-      AuthorName: [''],
-      PublisherName: [''],
+      name: [''],
+      authorName: [''],
+      publisherName: [''],
       pages: [''],
-      status: ['', Validators.required],
       createdDate: ['', Validators.required],
-      orderedDate: [''],
+      orderDate: [''],
       remarks: ['', Validators.required],
       cost: ['', Validators.required],
-      selfRackPosition: ['', Validators.required],
+      shelfRackPosition: ['', Validators.required],
       vendorName: ['', Validators.required],
       yearOfPublication: [''],
       subject: ['', Validators.required],
       purchaseDate: [''],
-      ISBNNo: ['', Validators.required],
-      DDC: ['', Validators.required],
+      isbnNo: ['', Validators.required],
+      ddc: ['', Validators.required],
       keywords: ['', Validators.required],
       accessionNo: ['', Validators.required],
+
       quantity: [1, Validators.required]
+
     });
   }
 
   Save() {
+
     this._bookService.addBook(this.BookForm.value, this.BookForm.value.quantity).subscribe(data => {
       console.log(data);
     });
+
   }
 
   GenerateUniqueCode() {
@@ -69,7 +79,6 @@ export class BookComponent implements OnInit {
       AuthorName: '',
       PublisherName: '',
       pages: '',
-      status: '',
       createdDate: '',
       orderedDate: '',
       remarks: '',
@@ -83,7 +92,10 @@ export class BookComponent implements OnInit {
       DDC: '',
       keywords: '',
       accessionNo: '',
+
       quantity:1,
+
     });
   }
+
 }

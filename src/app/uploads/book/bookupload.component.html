@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <h1 class="h1 p-t10 d-inline-block">Upload Excel File</h1>
+
+  <nav aria-label="breadcrumb" class="d-inline-block float-right">
+
+    <ol class="breadcrumb bg-none p-r0">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Upload Excel File</li>
+    </ol>
+  </nav>
+</div>
+
+<div>
+<mat-card>
+
+  <mat-card-subtitle>
+    <b> STEPS TO UPLOAD</b> &nbsp;<small><i>The Students excel file</i></small>
+  </mat-card-subtitle>
+<mat-card-content>
+    <ol>
+      <li>
+         Download the sample file
+      </li>
+      <li>
+         Fill the student Details. Please ensure that the date is in "dd/MM/yyyy" format
+      </li>
+      <li>
+        Save the file.
+      </li>
+    </ol>
+</mat-card-content>
+  <mat-card-content>
+    <input type="file" class="form-control size" (click)="upload($event)">
+  </mat-card-content>
+
+<mat-card-content>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button><button id="btn-for-D" mat-raised-button color="warn" (click)="onDownload()">Download Sample</button>
+</mat-card-content>
+</mat-card>
+</div>

@@ -1,15 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatTableDataSource} from '@angular/material';
+
 @Component({
-  selector: 'app-bookissue',
-  templateUrl: './bookissue.component.html',
-  styleUrls: ['./bookissue.component.css']
+  selector: 'app-bookupload',
+  templateUrl: './bookupload.component.html',
+  styleUrls: ['./bookupload.component.css']
 })
 export class BookUploadComponent  {
-  category:string=null;
-    
   constructor() {
+  }
+
+  onSubmit() {
+console.log('On submit');
+  }
+
+  onDownload() {
+    console.log('On Download');
+  }
+
+  upload($event: MouseEvent) {
+    console.log('On upload', $event);
   }
 }
 
