@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 import {Book} from '../../model/book';
 import {MapperService} from '../../mapper/mapper.service';
 import {BookService} from '../../services/book.service';
+
 
 @Component({
   selector: 'app-book',
@@ -11,7 +13,9 @@ import {BookService} from '../../services/book.service';
 })
 export class BookComponent implements OnInit {
 
-  constructor(private  fB: FormBuilder, private bookService: BookService) {
+  
+  constructor(private  fB: FormBuilder,public _bookService:BookService) {
+
   }
 
   BookForm: FormGroup;
@@ -38,15 +42,18 @@ export class BookComponent implements OnInit {
       ddc: ['', Validators.required],
       keywords: ['', Validators.required],
       accessionNo: ['', Validators.required],
-      quantity: ['1', Validators.required]
+
+      quantity: [1, Validators.required]
+
     });
   }
 
   Save() {
-    this.bookService.addBook(this.BookForm.value, this.BookForm.value.quantity).subscribe(data => {
+
+    this._bookService.addBook(this.BookForm.value, this.BookForm.value.quantity).subscribe(data => {
       console.log(data);
     });
-    console.log(this.booksToPost);
+
   }
 
   GenerateUniqueCode() {
@@ -85,7 +92,9 @@ export class BookComponent implements OnInit {
       DDC: '',
       keywords: '',
       accessionNo: '',
-      quantity: '1'
+
+      quantity:1,
+
     });
   }
 
