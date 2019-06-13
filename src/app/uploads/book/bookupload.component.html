@@ -30,11 +30,22 @@
     </ol>
 </mat-card-content>
   <mat-card-content>
-    <input type="file" class="form-control size" (click)="upload($event)">
+    <input  type="file"  (change)="upload($event)"/>
+<!--    <label for="singleFile">Upload file</label>-->
+<!--    <input id="singleFile" type="file" />-->
+    <br>
+
+<!--    <mat-file-upload-queue #fileUploadQueue-->
+<!--                           [fileAlias]="'file'"-->
+<!--                           [httpUrl]="'http://localhost:8180/jax-rs-jersey-application-sample'">-->
+
+<!--      <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index"></mat-file-upload>-->
+<!--    </mat-file-upload-queue>-->
+    <div *ngIf="fileError" ><span id="validationError" *ngFor="let err of validationErrors"><br><small>{{err}}</small></span></div>
   </mat-card-content>
 
 <mat-card-content>
-  <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button><button id="btn-for-D" mat-raised-button color="warn" (click)="onDownload()">Download Sample</button>
+  <button mat-raised-button color="primary" [disabled]="fileError" (click)="onSubmit()">Submit</button><button id="btn-for-D" mat-raised-button color="warn" (click)="onDownload()">Download Sample</button>
 </mat-card-content>
 </mat-card>
 </div>
