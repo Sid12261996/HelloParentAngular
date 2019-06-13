@@ -15,25 +15,25 @@
 <form [formGroup]="formControl"  >
   <mat-form-field class="col-md-2">
     <mat-label>Student</mat-label>
-    <select matNativeControl  formControlName="Student" required>
-      <option *ngFor="let student of studentView" value={{student.id}} [disabled]="containerView.length>=1">{{student.admissionId}}</option>
+    <mat-select   formControlName="Student" required>
+      <mat-option *ngFor="let student of studentView" value={{student.id}} [disabled]="containerView.length>=1">{{student.admissionId}}</mat-option>
 
-    </select>
+    </mat-select>
 
   </mat-form-field>  
   <mat-form-field class="col-md-2">
 
     <mat-label>Category</mat-label>
-    <select matNativeControl  formControlName="Category" (change)="onCategoryChange()" required>
-      <option *ngFor="let key of keys" value={{categoryOnDropdown[key]}}>{{categoryOnDropdown[key]}}</option>
+    <mat-select  formControlName="Category" (change)="onCategoryChange()" required>
+      <mat-option *ngFor="let key of keys" value={{categoryOnDropdown[key]}}>{{categoryOnDropdown[key]}}</mat-option>
 
-    </select>
+    </mat-select>
   </mat-form-field>
   <mat-form-field class="col-md-2" [floatLabel]="'never'">
     <mat-label>Items</mat-label>
-    <select matNativeControl  formControlName="Item" required>
-      <option *ngFor="let book of bookView" value={{book.id}}>{{book.bookName}}</option>
-    </select>
+    <mat-select   formControlName="Item" required>
+      <mat-option *ngFor="let book of bookView" value={{book.id}}>{{book.bookName}}</mat-option>
+    </mat-select>
 
   </mat-form-field>
   <div class="col-md-2 d-inline">

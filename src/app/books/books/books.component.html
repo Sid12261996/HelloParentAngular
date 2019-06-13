@@ -15,21 +15,21 @@
     <div class="container-fluid p-t15 p-b20">
       <mat-form-field class="col-md-2">
         <mat-label>Status</mat-label>
-        <select matNativeControl [(ngModel)]="filter.status" (change)="onSearchBooks()">
-          <option value="0">Available</option>
-          <option value="1">Dead</option>
-          <option value="2">Lost</option>
-          <option value="3">Issued</option>
-        </select>
+        <mat-select  [(ngModel)]="filter.status" (change)="onSearchBooks()">
+          <mat-option value="0">Available</mat-option>
+          <mat-option value="1">Dead</mat-option>
+          <mat-option value="2">Lost</mat-option>
+          <mat-option value="3">Issued</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field class="col-md-2">
         <mat-label>Category</mat-label>
-        <select matNativeControl [(ngModel)]="filter.category" (change)="onSearchBooks()">
-          <option value="0">Book</option>
-          <option value="1">Novels</option>
-          <option value="2">Journals</option>
-          <option value="3">Newspapper</option>
-        </select>
+        <mat-select  [(ngModel)]="filter.category" (change)="onSearchBooks()">
+          <mat-option value="0">Book</mat-option>
+          <mat-option value="1">Novels</mat-option>
+          <mat-option value="2">Journals</mat-option>
+          <mat-option value="3">Newspapper</mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field class="example-full-width col-md-2">
         <input matInput placeholder="Name" [(ngModel)]="filter.bookName" (keyup)="onSearchBooks()">

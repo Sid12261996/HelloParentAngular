@@ -51,8 +51,9 @@ export class BookComponent implements OnInit {
 
   GenerateUniqueCode() {
     let text = '';
-    const length = 10;
-    const possible = 'ABwertgvvdrc44fC';
+    const length = 15;
+    const possible = 'ABwertgvvdrc421DGRvdhgmieHTRZxeGr354762320kgmsFTTTgcs#5313g85nf7d58jns8e49fj59t594mrr43XZegi4fC';
+
 
     for (let i = 0; i < length; i++) {
 
