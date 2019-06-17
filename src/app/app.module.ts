@@ -35,7 +35,7 @@ import {BookreturnComponent} from './bookreturn/bookreturn.component';
 import {HttpClientModule} from '@angular/common/http';
 import {TableComponent} from './table/table.component';
 import {BookUploadComponent} from './uploads/book/bookupload.component';
-
+import { MatFileUploadModule } from 'angular-material-fileupload';
 //import { BookIssuedComponent } from './showIssuedBook/book-issued.component';
 
 const routes: Routes = [
@@ -69,7 +69,7 @@ const routes: Routes = [
     MatButtonModule,
     MatCheckboxModule, MatCardModule, MatFormFieldModule, MatInputModule, MatIconModule, MatMenuModule, MatDividerModule,
     MatSelectModule, MatTableModule, MatChipsModule, MatPaginatorModule, MatSidenavModule, MatNativeDateModule, MatBadgeModule,
-    MatDatepickerModule, MatSnackBarModule, HttpClientModule, MatListModule, MatSortModule
+    MatDatepickerModule, MatSnackBarModule, HttpClientModule, MatListModule, MatSortModule, MatFileUploadModule
   ],
   providers: [MatNativeDateModule, MatSnackBar],
   bootstrap: [AppComponent]
