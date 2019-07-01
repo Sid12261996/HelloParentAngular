@@ -5,7 +5,11 @@ import {Book} from '../model/book';
 import {apiUrl} from 'src/environments/environment';
 import {Observable} from 'rxjs';
 import {StudentView} from '../views/studentview';
-import {student} from '../model/student';
+import {Student} from '../model/student';
+import { BookIssuedView } from '../views/booksissuedview';
+import { element } from '@angular/core/src/render3';
+import { BookTransaction } from '../model/booktransaction';
+import { BookIssue } from '../model/bookissue';
 
 @Injectable({
   providedIn: 'root'
@@ -47,12 +51,30 @@ export class MapperService {
     return bookViews;
   }
 
+  mapTxnBookToIssueBookView(bookTransaction:BookIssue[]):BookIssuedView[]
+  {
+    let txnBookView:BookIssuedView[]=[];
+    bookTransaction.forEach(element=>{
+        let bookIssueView = new BookIssuedView();
+        bookIssueView.id=element.id;
+        bookIssueView.studentId=element.studentId;
+        bookIssueView.bookId=element.bookId;
+        bookIssueView.bookName=element.name;
+        bookIssueView.category=element.category;
+        bookIssueView.author=element.authorName;
+        bookIssueView.publisher=element.publisherName;
+        bookIssueView.issuedDate = element.issueDate;
+        txnBookView.push(bookIssueView);
+    });
+    return txnBookView;
+  }
 
-  mapStudentToStudentView(students: student[]): StudentView[] {
+
+  mapStudentToStudentView(students: Student[]): StudentView[] {
     let studentViews: StudentView[] = [];
     students.forEach(element => {
       let studentView = new StudentView();
-      studentView.id = element.studentId;
+      studentView.id = element.id;
       studentView.admissionId = element.identifier;
       studentView.name = element.name;
       studentView.father = element.fatherName;

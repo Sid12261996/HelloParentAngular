@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {
   MatButtonModule,
   MatCheckboxModule,
@@ -20,7 +21,7 @@ import {
   MatSnackBarModule,
   MatIconModule,
   MatMenuModule,
-  MatDividerModule, MatBadgeModule, MatListModule, MatSortModule
+  MatDividerModule, MatBadgeModule, MatListModule, MatSortModule, MatAutocompleteModule
 
 } from '@angular/material';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -35,8 +36,9 @@ import {BookreturnComponent} from './bookreturn/bookreturn.component';
 import {HttpClientModule} from '@angular/common/http';
 import {TableComponent} from './table/table.component';
 import {BookUploadComponent} from './uploads/book/bookupload.component';
-import { MatFileUploadModule } from 'angular-material-fileupload';
-//import { BookIssuedComponent } from './showIssuedBook/book-issued.component';
+import {ApproveFeesComponent} from './fees/approvefees/approvefees.component';
+import {ApproveFeeComponent} from './fees/approvefee/approvefee.component'
+import {ToastrModule} from 'ngx-toastr';
 
 const routes: Routes = [
   {path: '', component: BooksComponent},
@@ -44,7 +46,9 @@ const routes: Routes = [
   {path: 'issue', component: BookissueComponent},
   {path: 'return', component: BookreturnComponent},
   {path: 'table', component: TableComponent},
-  {path: 'bulkupload', component: BookUploadComponent}
+  {path: 'bulkupload', component: BookUploadComponent},
+  {path: 'fees/apporvefees', component: ApproveFeesComponent},
+  {path: 'fees/apporvefee', component: ApproveFeeComponent}
 ];
 
 @NgModule({
@@ -56,8 +60,9 @@ const routes: Routes = [
     BookreturnComponent,
     HeaderComponent,
     TableComponent,
-    BookUploadComponent
-    //BookIssuedComponent
+    BookUploadComponent,
+    ApproveFeesComponent,
+    ApproveFeeComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -69,7 +74,8 @@ const routes: Routes = [
     MatButtonModule,
     MatCheckboxModule, MatCardModule, MatFormFieldModule, MatInputModule, MatIconModule, MatMenuModule, MatDividerModule,
     MatSelectModule, MatTableModule, MatChipsModule, MatPaginatorModule, MatSidenavModule, MatNativeDateModule, MatBadgeModule,
-    MatDatepickerModule, MatSnackBarModule, HttpClientModule, MatListModule, MatSortModule, MatFileUploadModule
+    MatDatepickerModule, MatSnackBarModule, HttpClientModule, MatListModule, MatSortModule
+    , ToastrModule.forRoot(), MatAutocompleteModule,Ng2SearchPipeModule
   ],
   providers: [MatNativeDateModule, MatSnackBar],
   bootstrap: [AppComponent]

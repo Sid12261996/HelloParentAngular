@@ -16,14 +16,25 @@ export class BookService {
   constructor(private http: HttpClient) {
   }
 
-  getBooks(schoolId: string): Observable<Book[]> {
-    const currentUrl = `${this.url + this.endpoint}/${schoolId}`;
+  getBooks(): Observable<Book[]> {
+    const currentUrl = `${this.url + this.endpoint}`;
+    return this.http.get<Book[]>(currentUrl);
+  }
+
+  getBookwithCategory(category: number): Observable<Book[]> {
+    const currentUrl = `${this.url + this.endpoint}/GetBookswithcategory/${category}`;
     return this.http.get<Book[]>(currentUrl);
   }
 
   addBook(books: Book, quantity): Observable<any> {
     const currentUrl = `${this.url + this.endpoint}/${quantity}`;
     return this.http.post(currentUrl, books);
+  }
+
+  getIssuedBookStudent(bookId:string):Observable<any>
+  {
+    const currentUrl = this.url + 'bookTransaction/GetStudent/' + bookId;
+    return this.http.get(currentUrl);
   }
 
 }

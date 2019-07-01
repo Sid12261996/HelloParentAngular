@@ -2,82 +2,100 @@
   <h1 class="h1 p-t10 d-inline-block">Book Issue</h1>
 
   <nav aria-label="breadcrumb" class="d-inline-block float-right">
-      
-      <ol class="breadcrumb bg-none p-r0">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Book Issue</li>
-      </ol>
-    </nav>
+
+    <ol class="breadcrumb bg-none p-r0">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Book Issue</li>
+    </ol>
+  </nav>
 </div>
 
 <div class="container-fluid">
-<mat-card class="bdr0 t-bdr m-b15">
-<form [formGroup]="formControl"  >
-  <mat-form-field class="col-md-2">
-    <mat-label>Student</mat-label>
-    <mat-select   formControlName="Student" required>
-      <mat-option *ngFor="let student of studentView" value={{student.id}} [disabled]="containerView.length>=1">{{student.admissionId}}</mat-option>
+  <mat-card class="bdr0 t-bdr m-b15">
+    <form [formGroup]="formControl">
+      <div class="row">
+        <div *ngIf="isLoading" class="col-md-2">
+          <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+        </div>
 
-    </mat-select>
+        <mat-form-field class="col-md-2" *ngIf="!isLoading">
+          <mat-label>Student</mat-label>
+          <input type="text" placeholder="Admission Id" aria-label="Assignee"
+                  formControlName="Student"
+                 matInput [matAutocomplete]="auto" required>
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let student of filteredOptions| async" [value]='student'
+            >{{student.name}}-{{student.admissionId}}</mat-option>
 
-  </mat-form-field>  
-  <mat-form-field class="col-md-2">
+          </mat-autocomplete>
 
-    <mat-label>Category</mat-label>
-    <mat-select  formControlName="Category" (change)="onCategoryChange()" required>
-      <mat-option *ngFor="let key of keys" value={{categoryOnDropdown[key]}}>{{categoryOnDropdown[key]}}</mat-option>
+        </mat-form-field>
+        <mat-form-field class="col-md-2">
 
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field class="col-md-2" [floatLabel]="'never'">
-    <mat-label>Items</mat-label>
-    <mat-select   formControlName="Item" required>
-      <mat-option *ngFor="let book of bookView" value={{book.id}}>{{book.bookName}}</mat-option>
-    </mat-select>
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="Category" (selectionChange)="onCategoryChange()" required>
+            <mat-option *ngFor="let key of keys"
+                        value={{categoryOnDropdown[key]}}>{{categoryOnDropdown[key]}}</mat-option>
 
-  </mat-form-field>
-  <div class="col-md-2 d-inline">
-  <button mat-raised-button  (click)="onAddToContainer()" [disabled]="containerView.length== BOOK_ISSUE_LIMIT||formControl.invalid " class="bdr0 mr-2 btn bg-orange text-white"> Add in List</button>
-  <button mat-raised-button (click)="onIssue()" [disabled]="containerView.length==0" class="bdr0 btn bg-blue text-white"> Issue</button>
-  </div>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-md-2" [floatLabel]="'never'">
+          <mat-label>Items</mat-label>
+          <mat-select formControlName="Item" required>
+            <mat-option *ngFor="let book of bookView" value={{book.id}}>{{book.bookName}}</mat-option>
+          </mat-select>
 
-</form>
-</mat-card>
+        </mat-form-field>
+        <div class="col-md-3 d-inline">
+          <button mat-raised-button (click)="onAddToContainer()"
+                  [disabled]="containerView.length== BOOK_ISSUE_LIMIT||formControl.invalid "
+                  class="bdr0 mr-2 btn bg-orange text-white"> Add in List
+          </button>
+          <button mat-raised-button (click)="onIssue()" [disabled]="containerView.length==0"
+                  class="bdr0 btn bg-blue text-white"> Issue
+          </button>
+        </div>
+      </div>
+    </form>
 
+  </mat-card>
 
+<div class="table-responsive">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8 bdr0 t-bdr p-0 ftable table table-striped">
 
-    <mat-table  [dataSource]="dataSource" class="mat-elevation-z8 bdr0 t-bdr p-0">
-
-      <ng-container matColumnDef="category">
-        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{getCategoryEnumText(element.category)}} </mat-cell>
-      </ng-container>
-
-
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Item Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.bookName}} </mat-cell>
-      </ng-container>
-
-
-      <ng-container matColumnDef="authorName">
-        <mat-header-cell *matHeaderCellDef> Author Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.authorName}} </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef> Category</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{getCategoryEnumAsText(element.category)}} </mat-cell>
+    </ng-container>
 
 
-      <ng-container matColumnDef="publisherName">
-        <mat-header-cell *matHeaderCellDef> Publisher Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.publisherName}} </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Item Name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.bookName}} </mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let element"><i class="material-icons CP" (click)="onRemoveFromContainer(element)"> delete </i>  </mat-cell>
-      </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  <mat-card *ngIf="containerView.length==0"class="mat-elevation-z8 bdr0 t-bdr p-0 text-center"><strong class="p-t10 p-b10 d-block">Empty container</strong></mat-card>
-  </div>
+    <ng-container matColumnDef="authorName">
+      <mat-header-cell *matHeaderCellDef> Author Name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.authorName}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="publisherName">
+      <mat-header-cell *matHeaderCellDef> Publisher Name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.publisherName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action</mat-header-cell>
+      <mat-cell *matCellDef="let element"><i class="material-icons CP" (click)="onRemoveFromContainer(element)">
+        delete </i></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+  <mat-card *ngIf="containerView.length==0" class="mat-elevation-z8 bdr0 t-bdr p-0 text-center"><strong
+    class="p-t10 p-b10 d-block">Empty container</strong></mat-card>
+</div>

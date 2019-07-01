@@ -1,6 +1,6 @@
 export class IssueBookView
 {
-    id:string;   
+    id:number;   
     studentId:string;
     isChecked:boolean;
     category:string;

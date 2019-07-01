@@ -7,15 +7,15 @@ import { Student } from '../model/student';
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
+export class CommonService {
 
   constructor(private http: HttpClient) { }
 
   // Fetch students by schoolid
-  getStudentsBySchool(schoolId):Observable<Student[]> {   
-    return this.http.get<Student[]>(apiUrl+'student'+"/"+schoolId)
+  getFeeFrequency():Observable<Map<string, string>[]> {   
+    return this.http.get<Map<string, string>[]>(apiUrl+'common/feefrequency')
   }
-  getStudentsByClass(classId):Observable<Student[]> {   
-    return this.http.get<Student[]>(apiUrl+'student'+"/"+classId+"/class")
+  getFeeStatus():Observable<Map<string, string>[]> {   
+    return this.http.get<Map<string, string>[]>(apiUrl+'common/feestatus')
   }
 }

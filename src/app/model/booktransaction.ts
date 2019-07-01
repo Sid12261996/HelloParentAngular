@@ -1,10 +1,11 @@
 export class BookTransaction {
+    id:number;
     studentId: string
-    schoolId: string
     bookId: string
-    dateOfIssue: Date
-    issuedBy: string
-    dateOfReturn?: Date
-    returnBy?: string
-    remarks: string
+    issueDate: Date
+    returnDate?: Date
+    isReturned: boolean
+    createdAt: Date
+    updatedAt?: Date
+    deletedAt?: Date
 }

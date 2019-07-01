@@ -2,94 +2,109 @@
   <h1 class="h1 p-t10 d-inline-block">Book Return</h1>
 
   <nav aria-label="breadcrumb" class="d-inline-block float-right">
-      
-      <ol class="breadcrumb bg-none p-r0">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Book Return</li>
-      </ol>
-    </nav>
+
+    <ol class="breadcrumb bg-none p-r0">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Book Return</li>
+    </ol>
+  </nav>
 </div>
 
-<mat-card class="bdr0 t-bdr m-b15"> 
-  <mat-form-field class="col-md-3">
-    <mat-label>Student</mat-label>
-    <mat-select  required (change)='onOptionsSelected($event)'>
-      <mat-option value="">Select Student</mat-option>
-      <mat-option value="555aaa">Raj</mat-option>
-      <mat-option value="123bbb">Nisha</mat-option>
-      <mat-option value="111aaa">Pappu</mat-option>
-      <mat-option value="222aaa">Krunesh</mat-option>
-      <mat-option value="333aaa">Apoorva</mat-option>
-    </mat-select>
-  </mat-form-field> 
-  
-  
-  <button mat-raised-button (click)="searchByStudent()" class="bdr0 btn bg-orange text-white">Search</button>&nbsp;
-  <button mat-raised-button (click)="returnBook()" class="bdr0 btn bg-blue text-white"> Return</button>
+<mat-card class="bdr0 t-bdr m-b15">
+  <!--  <mat-form-field class="col-md-3">-->
+  <!--    <mat-label>Student</mat-label>-->
+  <!--    <mat-select  required (change)='onOptionsSelected($event)'>-->
+  <!--      <mat-option value="">Select Student</mat-option>-->
+  <!--      <mat-option value="555aaa">Raj</mat-option>-->
+  <!--      <mat-option value="123bbb">Nisha</mat-option>-->
+  <!--      <mat-option value="111aaa">Pappu</mat-option>-->
+  <!--      <mat-option value="222aaa">Krunesh</mat-option>-->
+  <!--      <mat-option value="333aaa">Apoorva</mat-option>-->
+  <!--    </mat-select>-->
+  <!--  </mat-form-field> -->
+  <div class="row">
+    <div *ngIf="isLoading" class="col-md-2">
+      <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+    </div>
+    <mat-form-field class="col-md-3" *ngIf="!isLoading">
+      <mat-label>Student</mat-label>
+      <input type="text" placeholder="Admission Id" aria-label="Assignee" [formControl]="Student"
+             matInput [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" required>
+        <mat-option *ngFor="let student of filteredOptions| async" [value]='student'
+        >{{student.name}}-{{student.admissionId}}</mat-option>
+
+      </mat-autocomplete>
+
+    </mat-form-field>
+
+    <button mat-raised-button (click)="searchByStudent()" class="bdr0 btn bg-orange text-white">Search</button>&nbsp;
+    <button mat-raised-button (click)="returnBook()" class="bdr0 btn bg-blue text-white"> Return</button>
+  </div>
 </mat-card>
 
 
+<div class="table-responsive">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 bdr0 t-bdr ftable table table-striped">
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 bdr0 t-bdr">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? isAll($event) : null"
+                      (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selectRow($event, row) : null"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
 
-  <!-- Checkbox Column -->
-  <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? isAll($event) : null"
-                    (change)="$event ? masterToggle() : null"
-                    [checked]="selection.hasValue() && isAllSelected()"
-                    [indeterminate]="selection.hasValue() && !isAllSelected()">
-      </mat-checkbox>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <mat-checkbox (click)="$event.stopPropagation()"
-                    (change)="$event ? selectRow($event, row) : null"
-                    (change)="$event ? selection.toggle(row) : null"
-                    [checked]="selection.isSelected(row)">
-      </mat-checkbox>
-    </td>
-  </ng-container>
 
-  
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef [style.display]="'none'"> Id </th>
-    <td mat-cell *matCellDef="let element" [style.display]="'none'"> {{element.id}} </td>
-  </ng-container>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef [style.display]="'none'"> Id</th>
+      <td mat-cell *matCellDef="let element" [style.display]="'none'"> {{element.id}} </td>
+    </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef> Category </th>
-    <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-  </ng-container>
+    <!-- category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Category</th>
+      <td mat-cell *matCellDef="let element"> {{getCategoryEnumText(element.category)}} </td>
+    </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+    <!-- bookName Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let element"> {{element.bookName}} </td>
+    </ng-container>
 
-   <!-- Symbol Column -->
-   <ng-container matColumnDef="authorName">
-    <th mat-header-cell *matHeaderCellDef> Author </th>
-    <td mat-cell *matCellDef="let element"> {{element.authorName}} </td>
-  </ng-container>
+    <!-- author Column -->
+    <ng-container matColumnDef="authorName">
+      <th mat-header-cell *matHeaderCellDef> Author</th>
+      <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+    </ng-container>
 
-   <!-- Symbol Column -->
-   <ng-container matColumnDef="publisherName">
-    <th mat-header-cell *matHeaderCellDef> Publisher </th>
-    <td mat-cell *matCellDef="let element"> {{element.publisherName}} </td>
-  </ng-container>
+    <!-- publisher Column -->
+    <ng-container matColumnDef="publisherName">
+      <th mat-header-cell *matHeaderCellDef> Publisher</th>
+      <td mat-cell *matCellDef="let element"> {{element.publisher}} </td>
+    </ng-container>
 
-   <!-- Symbol Column -->
-   <ng-container matColumnDef="dateOfissue">
-    <th mat-header-cell *matHeaderCellDef> Date of Issue </th>
-    <td mat-cell *matCellDef="let element"> {{element.dateOfissue| date: 'dd/MM/yyyy'}} </td>
-  </ng-container>
+    <!-- issuedDate Column -->
+    <ng-container matColumnDef="dateOfissue">
+      <th mat-header-cell *matHeaderCellDef> Date of Issue</th>
+      <td mat-cell *matCellDef="let element"> {{element.issuedDate| date: 'dd/MM/yyyy'}} </td>
+    </ng-container>
 
-  
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      (click)="selection.toggle(row)">
-  </tr>
-</table>     
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selection.toggle(row)">
+    </tr>
+  </table>
+</div>

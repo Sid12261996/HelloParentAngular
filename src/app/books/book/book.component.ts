@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Book} from '../../model/book';
-import {MapperService} from '../../mapper/mapper.service';
 import {BookService} from '../../services/book.service';
+import {ToastrService} from 'ngx-toastr';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-book',
@@ -11,13 +12,10 @@ import {BookService} from '../../services/book.service';
 })
 export class BookComponent implements OnInit {
 
-  constructor(private  fB: FormBuilder, private bookService: BookService) {
+  constructor(private  fB: FormBuilder, private bookService: BookService, private toastr: ToastrService, private loc: Location) {
   }
 
   BookForm: FormGroup;
-  buttondisabled = true;
-  booksToPost: Book[];
-
   ngOnInit() {
     this.BookForm = this.fB.group({
       category: [''],
@@ -44,9 +42,16 @@ export class BookComponent implements OnInit {
 
   Save() {
     this.bookService.addBook(this.BookForm.value, this.BookForm.value.quantity).subscribe(data => {
-      console.log(data);
-    });
-    console.log(this.booksToPost);
+        if (data) {
+          this.toastr.success('Book Added successfully!!', 'Book(s) Added');
+          this.Reset();
+        }
+        console.log(data);
+      },
+      error1 => {
+        this.toastr.error(`Books couldn't be added \n check the error: ${error1}`, 'Some error Occured');
+      });
+
   }
 
   GenerateUniqueCode() {
@@ -69,24 +74,24 @@ export class BookComponent implements OnInit {
   Reset() {
     this.BookForm.setValue({
       category: '',
-      BookName: '',
-      AuthorName: '',
-      PublisherName: '',
       pages: '',
       createdDate: '',
-      orderedDate: '',
       remarks: '',
       cost: '',
-      selfRackPosition: '',
       vendorName: '',
       yearOfPublication: '',
       subject: '',
       purchaseDate: '',
-      ISBNNo: '',
-      DDC: '',
       keywords: '',
       accessionNo: '',
-      quantity: '1'
+      quantity: '1',
+      name: '',
+      authorName: '',
+      publisherName: '',
+      orderDate: null,
+      shelfRackPosition: null,
+      isbnNo: '',
+      ddc: ''
     });
   }
 

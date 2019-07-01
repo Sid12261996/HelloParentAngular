@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap');
+@import '~ngx-toastr/toastr.css';  
 html, body { height: 100%; }
 body { 
     margin: 0; 
@@ -28,6 +29,7 @@ body {
 
 
 /*----------Margin-------------*/
+.m-b0{margin-bottom: 0}
 .m-t10{margin-top: 10px;}
 .m-b10{margin-bottom: 10px;}
 .m-b15{margin-bottom: 15px;}
@@ -284,4 +286,5 @@ a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+
 }

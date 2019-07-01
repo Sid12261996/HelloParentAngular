@@ -1,7 +1,7 @@
 import {Category} from '../enum/enum';
 
 export class BookIssuedView {
-  id: string;
+  id: number;
   studentId:string;
   studentName:string;
   bookId: string;
@@ -9,4 +9,8 @@ export class BookIssuedView {
   bookName: string;
   issuedDate: Date;
   issuedBy: string;
+  author:string;
+  publisher:string
+  isChecked:boolean;
+
 }

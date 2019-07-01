@@ -11,3 +11,11 @@ export enum Category {
   Journals = 'Journals',
   Newspapper = 'Newspapper',
 }
+export enum FeeStatus
+{
+  PendingApproval,
+  Approved,
+  Paid,
+  PartialPaid,
+  Cancelled
+}
